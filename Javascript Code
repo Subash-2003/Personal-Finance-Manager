@@ -1,0 +1,30 @@
+let transactions = [];
+
+function addTransaction(type) {
+    const amount = parseFloat(document.getElementById("amount").value);
+    const description = document.getElementById("description").value;
+    if (!amount || !description) return;
+
+    transactions.push({ amount, description, type });
+    updateUI();
+
+    document.getElementById("amount").value = "";
+    document.getElementById("description").value = "";
+}
+
+function updateUI() {
+    const balanceElement = document.getElementById("balance");
+    const transactionsList = document.getElementById("transactions");
+    transactionsList.innerHTML = "";
+    let totalBalance = 0;
+
+    transactions.forEach(t => {
+        totalBalance += t.type === "income" ? t.amount : -t.amount;
+        const li = document.createElement("li");
+        li.textContent = `${t.description}: $${t.amount.toFixed(2)} (${t.type})`;
+        li.className = t.type;
+        transactionsList.appendChild(li);
+    });
+
+    balanceElement.textContent = totalBalance.toFixed(2);
+}
