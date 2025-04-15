@@ -1,33 +1,42 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
-    text-align: center;
     margin: 0;
     padding: 20px;
-}
-.container {
-    max-width: 400px;
-    margin: auto;
+  }
+  .main-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .left-panel {
+    width: 60%;
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-.balance {
+  }
+  .right-panel {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .balance {
     font-size: 1.8em;
     font-weight: bold;
     margin-bottom: 15px;
     color: #2c3e50;
-}
-input {
-    width: 90%;
+  }
+  input {
+    width: 95%;
     padding: 10px;
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-}
-button {
+  }
+  button {
     width: 45%;
     padding: 10px;
     margin: 10px 5px;
@@ -36,34 +45,88 @@ button {
     font-size: 1em;
     cursor: pointer;
     transition: 0.3s;
-}
-.income-btn {
+  }
+  .income-btn {
     background: #f67dce;
     color: white;
-}
-.expense-btn {
+  }
+  .expense-btn {
     background: #776ebc;
     color: white;
-}
-button:hover {
+  }
+  button:hover {
     opacity: 0.8;
-}
-.transactions-list {
+  }
+  .transactions-list {
     list-style: none;
     padding: 0;
     margin-top: 15px;
-}
-.transactions-list li {
+  }
+  .transactions-list li {
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
-    font-size: 1.1em;
-}
-.income {
+    font-size: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .income {
     background: #d4edda;
     color: #154357;
-}
-.expense {
+  }
+  .expense {
     background: #f8d7da;
     color: #721c24;
+  }
+  .profile {
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  .progress-container {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .avatar-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
+
+.avatar {
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 0 8px #8e44ad;
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.status-dot.online {
+    background-color: #9fb6a8;
+}
+  
