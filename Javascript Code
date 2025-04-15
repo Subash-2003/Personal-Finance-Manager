@@ -1,30 +1,68 @@
 let transactions = [];
+let income = 0;
+let expense = 0;
+
+const chartCtx = document.getElementById("financeChart").getContext("2d");
+const financeChart = new Chart(chartCtx, {
+    type: "doughnut",
+    data: {
+        labels: ["Income", "Expense"],
+        datasets: [{
+            data: [0, 0],
+            backgroundColor: ["#f67dce", "#776ebc"]
+        }]
+    }
+});
 
 function addTransaction(type) {
     const amount = parseFloat(document.getElementById("amount").value);
     const description = document.getElementById("description").value;
-    if (!amount || !description) return;
+    const category = document.getElementById("category").value;
+    const timestamp = new Date().toLocaleString();
 
-    transactions.push({ amount, description, type });
+    if (!amount || !description || !category) return;
+
+    transactions.push({ amount, description, category, timestamp, type });
     updateUI();
 
     document.getElementById("amount").value = "";
     document.getElementById("description").value = "";
+    document.getElementById("category").value = "";
 }
 
 function updateUI() {
     const balanceElement = document.getElementById("balance");
     const transactionsList = document.getElementById("transactions");
     transactionsList.innerHTML = "";
+
     let totalBalance = 0;
+    income = 0;
+    expense = 0;
 
     transactions.forEach(t => {
         totalBalance += t.type === "income" ? t.amount : -t.amount;
+        t.type === "income" ? income += t.amount : expense += t.amount;
+
         const li = document.createElement("li");
-        li.textContent = `${t.description}: $${t.amount.toFixed(2)} (${t.type})`;
         li.className = t.type;
+        li.innerHTML = `<span>${t.description} (${t.category})</span><span>$${t.amount.toFixed(2)}<br><small>${t.timestamp}</small></span>`;
         transactionsList.appendChild(li);
     });
 
     balanceElement.textContent = totalBalance.toFixed(2);
+
+    if (totalBalance < 0) {
+        alert("⚠️ Warning: Your balance is below zero!");
+    }
+
+
+    financeChart.data.datasets[0].data = [income, expense];
+    financeChart.update();
+
+
+    const savingsBar = document.getElementById("savingsBar");
+    savingsBar.value = Math.min(Math.max((totalBalance / 1000) * 100, 0), 100);
+}
+function showProfile() {
+    alert("Profile clicked!");
 }
