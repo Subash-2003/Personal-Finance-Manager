@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Finance Manager</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="accounting.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Finance Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="accounting.png" />
 </head>
 <body>
-    <div class="container">
-        <h1>💰 Personal Finance Manager</h1>
-        <div class="balance">Total Balance: $<span id="balance">0.00</span></div>
-        <input type="number" id="amount" placeholder="Enter Amount">
-        <input type="text" id="description" placeholder="Enter Description">
-        <button class="income-btn" onclick="addTransaction('income')">Add Income</button>
-        <button class="expense-btn" onclick="addTransaction('expense')">Add Expense</button>
-        <h2>Transaction History</h2>
-        <ul id="transactions" class="transactions-list"></ul>
+  <div class="main-layout">
+    <div class="left-panel">
+      <h1>💰 Personal Finance Manager</h1>
+      <div class="balance">Total Balance: $<span id="balance">0.00</span></div>
+      <input type="number" id="amount" placeholder="Enter Amount" />
+      <input type="text" id="description" placeholder="Enter Description" />
+      <input type="text" id="category" placeholder="Enter Category" />
+      <button class="income-btn" onclick="addTransaction('income')">Add Income</button>
+      <button class="expense-btn" onclick="addTransaction('expense')">Add Expense</button>
+      <h2>Transaction History</h2>
+      <ul id="transactions" class="transactions-list"></ul>
     </div>
-    <script src="script.js"></script>
+
+    <div class="right-panel">
+      <div class="profile">
+        <div class="avatar-container" title="View Profile">
+            <img src="" alt="Profile" class="avatar" onclick="showProfile()" />
+            <span class="status-dot online"></span>
+        </div>
+        
+        <h3>User Name</h3>
+        <p>Email: user@example.com</p>
+      </div>
+      <div>
+        <canvas id="financeChart" width="300" height="300"></canvas>
+        <div class="progress-container">
+          <p>Savings Progress</p>
+          <progress id="savingsBar" value="0" max="100"></progress>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
+
